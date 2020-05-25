@@ -61,5 +61,13 @@ Stack MERN #10, React & Axios, Peticion GET. min 7:40
 ## pagina para colores degradados
 https://uigradients.com/#CheerUpEmoKid
 
+## calendario en react
+https://reactdatepicker.com/
+npm install react-datepicker
+
+## cambiar formato fecha en javascript
+https://github.com/hustcc/timeago.js?files=1
+npm install timeago.js
+
 --- reproduccion 
-Stack MERN #12, React Componente de Notas. min 14:22
+Stack MERN #14, HTTP PUT REQUEST

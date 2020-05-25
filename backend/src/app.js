@@ -1,4 +1,4 @@
-const express = require('express'); //al parece ems6 no esta soportado en estas versiones de node. para eso se necesita babel que traduce codigo a el moderno
+const express = require('express'); //al parecer ems6 no esta soportado en estas versiones de node. para eso se necesita babel que traduce codigo a el moderno
 const cors    = require('cors');
 const app     = express();
 

@@ -1,27 +1,51 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { registerLocale } from  "react-datepicker";
+import es from 'date-fns/locale/es';
+registerLocale('es', es)
 
 export default class CreateNote extends Component {
 
     state = {
         users: [],
-        userSelected : ''
+        userSelected : '',
+        title   : '',
+        content : '',
+        date: new Date()
     }
 
     async componentDidMount(){
        const res = await axios.get('http://localhost:4000/api/users');
-       this.setState({users: res.data.map(user=> user.username)});
+       this.setState({
+           users        : res.data.map(user=> user.username),
+           userSelected : res.data[0].username
+        });
 
     }
 
-    onSubmit = (e)=> {
+    onSubmit = async(e)=> {
         e.preventDefault();
+        const newNote = {
+            title   : this.state.title,
+            content : this.state.content,
+            date    : this.state.date,
+            author  : this.state.userSelected
+        };
+        await axios.post('http://localhost:4000/api/notes', newNote);
+        window.location.href = '/'; //para que no recargue se utiliza un enrutador
     }
 
     onInputChange = e =>{
         this.setState({
-            userSelected : e.target.value
+            [e.target.name] : e.target.value
         })
+    }
+
+    onChangeDate = date =>{
+        //this.setState({date: date})
+        this.setState({date});// es lo mismo que la  linea anterior
     }
 
 
@@ -35,7 +59,7 @@ export default class CreateNote extends Component {
                         <select
                             className="form-control"
                             name="userSelected"
-                           onChange={this.onInputChange}
+                            onChange={this.onInputChange}
                         >
                             {
                                 this.state.users.map(user => 
@@ -53,6 +77,7 @@ export default class CreateNote extends Component {
                             className="form-control" 
                             placeholder="Title" 
                             name="title"
+                            onChange={this.onInputChange}
                             required
                             />
                     </div>
@@ -61,9 +86,18 @@ export default class CreateNote extends Component {
                             name="content" 
                             className = "form-control"
                             placeholder = "Content"
+                            onChange={this.onInputChange}
                             required
                         >
                         </textarea>
+                    </div>
+                    <div className="form-group">
+                        <DatePicker
+                            locale="es"
+                            className="form-control" 
+                            selected={this.state.date}
+                            onChange={this.onChangeDate}
+                        />
                     </div>
 
                     <form onSubmit={this.onSubmit}>
