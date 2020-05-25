@@ -4,6 +4,8 @@
 ## video json web token 
 https://www.youtube.com/watch?v=qckBlIfOnlA
 
+## local storage react
+https://www.youtube.com/watch?v=XyWC4xpbKWs
 
   ## --- Node JS -------------
 ## Iniciar un proyecto de node
