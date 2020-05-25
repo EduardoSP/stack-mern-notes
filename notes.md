@@ -69,5 +69,9 @@ npm install react-datepicker
 https://github.com/hustcc/timeago.js?files=1
 npm install timeago.js
 
+## flexbox
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+
 --- reproduccion 
 Stack MERN #14, HTTP PUT REQUEST
